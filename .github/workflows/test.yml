@@ -1,0 +1,39 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install clang-format
+      run: sudo apt-get install -y clang-format
+    
+    - name: Check code formatting
+      run: |
+        find src -name "*.cpp" -o -name "*.hpp" | xargs clang-format --dry-run --Werror
+    
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Validate mod.json
+      run: |
+        python3 -m json.tool mod.json > /dev/null
+        echo "✅ mod.json is valid"
+    
+    - name: Check file structure
+      run: |
+        test -f mod.json || exit 1
+        test -f CMakeLists.txt || exit 1
+        test -d src || exit 1
+        echo "✅ Project structure is valid"

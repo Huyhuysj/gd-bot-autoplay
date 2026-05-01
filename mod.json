@@ -1,0 +1,29 @@
+{
+    "geode": "3.0.0",
+    "gd": {
+        "ios": "2.206"
+    },
+    "id": "com.yourname.botautoplay",
+    "name": "Bot Auto Play",
+    "version": "v1.0.0",
+    "developer": "YourName",
+    "description": "Auto play bot for Geometry Dash",
+    "repository": "https://github.com/yourusername/gd-bot-autoplay",
+    "dependencies": [],
+    "settings": {
+        "enabled": {
+            "name": "Enable Bot",
+            "description": "Toggle auto play bot",
+            "type": "bool",
+            "default": false
+        },
+        "speed": {
+            "name": "Play Speed",
+            "description": "Speed multiplier for bot",
+            "type": "float",
+            "default": 1.0,
+            "min": 0.5,
+            "max": 2.0
+        }
+    }
+}
