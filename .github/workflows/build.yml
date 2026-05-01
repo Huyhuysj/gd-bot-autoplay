@@ -36,6 +36,7 @@ jobs:
     
     - name: Setup Geode SDK
       run: |
+        geode config setup --non-interactive
         geode sdk install
         geode sdk install-binaries
     
