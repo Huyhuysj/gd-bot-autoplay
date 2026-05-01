@@ -26,29 +26,23 @@ jobs:
       run: |
         brew install cmake ninja
     
-    - name: Clone Geode SDK
+    - name: Install Geode CLI
       run: |
-        git clone --depth 1 https://github.com/geode-sdk/geode.git $HOME/geode-sdk
-        echo "GEODE_SDK=$HOME/geode-sdk" >> $GITHUB_ENV
+        curl -L https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-v3.8.1-macos.zip -o geode-cli.zip
+        unzip geode-cli.zip
+        chmod +x geode
+        sudo mv geode /usr/local/bin/
+        geode --version
     
-    - name: Setup Geode CLI
+    - name: Setup Geode SDK
       run: |
-        cd $HOME/geode-sdk
-        mkdir -p build
-        cd build
-        cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release
-        cmake --build . --target geode-cli
-        echo "$HOME/geode-sdk/build/bin" >> $GITHUB_PATH
-    
-    - name: Install Geode Binaries
-      run: |
+        geode sdk install
         geode sdk install-binaries
     
     - name: Configure CMake
       run: |
         cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          -DGEODE_SDK=$GEODE_SDK
+          -DCMAKE_BUILD_TYPE=Release
     
     - name: Build
       run: cmake --build build --config Release
