@@ -34,9 +34,21 @@ jobs:
         sudo mv geode /usr/local/bin/
         geode --version
     
+    - name: Setup Geode config
+      run: |
+        mkdir -p ~/.geode
+        cat > ~/.geode/config.toml << EOF
+        default-developer = "github-actions"
+        
+        [profiles.default]
+        gd = "/Applications/Geometry Dash.app"
+        sdk = "$HOME/.geode/sdk"
+        EOF
+    
     - name: Setup Geode SDK
       run: |
-        geode sdk install-auto
+        geode sdk install
+        geode sdk install-binaries
     
     - name: Configure CMake
       run: |
