@@ -28,7 +28,7 @@ jobs:
     
     - name: Install Geode CLI
       run: |
-        curl -L https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-v3.8.1-macos.zip -o geode-cli.zip
+        curl -L https://github.com/geode-sdk/cli/releases/download/v3.7.4/geode-cli-v3.7.4-mac.zip -o geode-cli.zip
         unzip geode-cli.zip
         chmod +x geode
         sudo mv geode /usr/local/bin/
