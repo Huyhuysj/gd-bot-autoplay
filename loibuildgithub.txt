@@ -1,0 +1,78 @@
+Run cd $HOME/geode-sdk
+-- Version: 5.6.1
+-- No override path for bindings provided, using CPM to clone default. If you would like to use a separate clone of the bindings repo (for example in order to be able to efficiently change and contribute new bindings) then set GEODE_BINDINGS_REPO_PATH to where you have cloned the repository (system environment variables are supported).
+-- CPM: Adding package bindings@ (main)
+-- Populating bindings
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/runner/geode-sdk/build/_deps/bindings-subbuild
+[1/9] Creating directories for 'bindings-populate'
+[1/9] Performing download step (git clone) for 'bindings-populate'
+Cloning into 'bindings-src'...
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+[2/9] Performing update step for 'bindings-populate'
+-- Fetching latest from the remote origin
+[3/9] No patch step for 'bindings-populate'
+[5/9] No configure step for 'bindings-populate'
+[6/9] No build step for 'bindings-populate'
+[7/9] No install step for 'bindings-populate'
+[8/9] No test step for 'bindings-populate'
+[9/9] Completed 'bindings-populate'
+-- The CXX compiler identification is AppleClang 17.0.0.17000604
+-- The C compiler identification is AppleClang 17.0.0.17000604
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Looking for ccache/sccache
+Not using a caching compiler (ccache/sccache).
+-- Looking for ccache/sccache - not found
+Because of this, PCH will be enabled.
+-- Pre-compiled headers - ON
+CMake Warning at cmake/GeodeFile.cmake:10 (message):
+  Unable to find Geode CLI
+Call Stack (most recent call first):
+  CMakeLists.txt:197 (include)
+
+
+-- CPM: Adding package result@1.4.1 (v1.4.1)
+-- CPM: Adding package json@3.3.0 (v3.3.0)
+-- CPM: Adding package nontype_functional@6 (6d1d08c)
+-- CPM: Adding package fmt@12.1.0 (12.1.0)
+-- {fmt} version: 12.1.0
+-- Build type: Release
+-- Performing Test HAS_NULLPTR_WARNING
+-- Performing Test HAS_NULLPTR_WARNING - Success
+-- CPM: Adding package asp2@51 (51d3773)
+-- CPM: Adding package arc@1.5.5 (v1.5.5)
+-- Arc features: time, net, signal, iocp
+-- CPM: Adding package qsox@1 (1cd9dd7)
+-- CPM: Adding package TulipHook@3.1.11 (v3.1.11)
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- /Users/runner/geode-sdk/build/_deps/tuliphook-src/libraries/dobby/source
+-- CPM: Adding package capstone@ (d2a14e5)
+Enabling CAPSTONE_X86_SUPPORT
+-- Performing Test SUPPORTS_W_NO_EVERYTHING
+-- Performing Test SUPPORTS_W_NO_EVERYTHING - Success
+Set SKIP_BUILDING_CODEGEN to OFF to force codegen to build locally.
+-- Downloading Codegen
+-- Downloading Codegen - success
+-- Skipping building Codegen
+-- Running Codegen
+CMake Error at cmake/GeodeFile.cmake:336 (message):
+'./Codegen' 'MacOS' '/Users/runner/geode-sdk/build/_deps/bindings-src/bindings/2.2081' '/Users/runner/geode-sdk/build/bindings/bindings'
+  package_geode_resources_now called, but Geode CLI was not found - Please
+  install Geode CLI from https://github.com/geode-sdk/cli/releases/latest
+Call Stack (most recent call first):
+  loader/CMakeLists.txt:184 (package_geode_resources_now)
+
+
+-- Configuring incomplete, errors occurred!
