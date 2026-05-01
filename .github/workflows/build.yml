@@ -26,34 +26,25 @@ jobs:
       run: |
         brew install cmake ninja
     
-    - name: Install Geode CLI
+    - name: Clone Geode SDK
       run: |
-        curl -L https://github.com/geode-sdk/cli/releases/download/v3.7.4/geode-cli-v3.7.4-mac.zip -o geode-cli.zip
-        unzip geode-cli.zip
-        chmod +x geode
-        sudo mv geode /usr/local/bin/
-        geode --version
+        git clone --recursive https://github.com/geode-sdk/geode.git $HOME/geode-sdk
+        cd $HOME/geode-sdk
+        git checkout v3.7.1
     
-    - name: Setup Geode config
+    - name: Build Geode SDK
       run: |
-        mkdir -p ~/.geode
-        cat > ~/.geode/config.toml << EOF
-        default-developer = "github-actions"
-        
-        [profiles.default]
-        gd = "/Applications/Geometry Dash.app"
-        sdk = "$HOME/.geode/sdk"
-        EOF
-    
-    - name: Setup Geode SDK
-      run: |
-        geode sdk install
-        geode sdk install-binaries
+        cd $HOME/geode-sdk
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DGEODE_DISABLE_PRECOMPILED_HEADERS=ON
+        cmake --build build --config Release
     
     - name: Configure CMake
       run: |
         cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_BUILD_TYPE=Release \
+          -DGEODE_SDK_PATH=$HOME/geode-sdk
     
     - name: Build
       run: cmake --build build --config Release
